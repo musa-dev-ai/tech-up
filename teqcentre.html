@@ -1,0 +1,897 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Tech-Up Program | Launch Your Tech Career</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
+    
+    :root {
+      --primary: #4f46e5;
+      --primary-dark: #4338ca;
+      --secondary: #10b981;
+      --dark: #1f2937;
+      --light: #f9fafb;
+    }
+    
+    body {
+      font-family: 'Poppins', sans-serif;
+      scroll-behavior: smooth;
+    }
+    
+    .hero-bg {
+      background-image: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.7)), url('https://images.unsplash.com/photo-1550751827-4bd374c3f58b?q=80&w=2070&auto=format&fit=crop');
+      background-size: cover;
+      background-position: center;
+      background-attachment: fixed;
+    }
+    
+    .floating-btn {
+      position: fixed;
+      bottom: 30px;
+      right: 30px;
+      z-index: 1000;
+      transition: all 0.3s ease;
+      animation: pulse 2s infinite;
+    }
+    
+    .floating-btn:hover {
+      transform: translateY(-5px);
+      animation: none;
+    }
+    
+    .card-hover {
+      transition: all 0.3s ease;
+    }
+    
+    .card-hover:hover {
+      transform: translateY(-10px);
+      box-shadow: 0 20px 25px -5px rgba(0,0,0,0.1), 0 10px 10px -5px rgba(0,0,0,0.04);
+    }
+    
+    .nav-link {
+      position: relative;
+    }
+    
+    .nav-link::after {
+      content: '';
+      position: absolute;
+      width: 0;
+      height: 2px;
+      bottom: -2px;
+      left: 0;
+      background-color: var(--primary);
+      transition: width 0.3s ease;
+    }
+    
+    .nav-link:hover::after {
+      width: 100%;
+    }
+    
+    .process-step {
+      position: relative;
+    }
+    
+    .process-step:not(:last-child)::after {
+      content: '';
+      position: absolute;
+      top: 40px;
+      right: -20px;
+      width: 40px;
+      height: 2px;
+      background: var(--primary);
+      display: none;
+    }
+    
+    @media (min-width: 640px) {
+      .process-step:not(:last-child)::after {
+        display: block;
+      }
+    }
+    
+    @keyframes pulse {
+      0% {
+        box-shadow: 0 0 0 0 rgba(16, 185, 129, 0.7);
+      }
+      70% {
+        box-shadow: 0 0 0 10px rgba(16, 185, 129, 0);
+      }
+      100% {
+        box-shadow: 0 0 0 0 rgba(16, 185, 129, 0);
+      }
+    }
+    
+    .animate-fade-in {
+      animation: fadeIn 1s ease-in;
+    }
+    
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    
+    .delay-1 { animation-delay: 0.2s; }
+    .delay-2 { animation-delay: 0.4s; }
+    .delay-3 { animation-delay: 0.6s; }
+    .delay-4 { animation-delay: 0.8s; }
+    .delay-5 { animation-delay: 1s; }
+  </style>
+</head>
+<body class="bg-gray-50 text-gray-800">
+
+  <!-- Header -->
+  <header class="fixed top-0 left-0 w-full z-50 bg-white shadow-md transition-all duration-300">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="flex justify-between items-center h-20">
+        <a href="#home" class="text-2xl font-bold text-indigo-600 flex items-center">
+          <i class="fas fa-rocket mr-2 text-indigo-500"></i>Tech-Up
+        </a>
+        
+        <div class="hidden md:flex space-x-8">
+          <a href="#home" class="nav-link text-gray-700 hover:text-indigo-600 font-medium">Home</a>
+          <a href="#about" class="nav-link text-gray-700 hover:text-indigo-600 font-medium">About</a>
+          <a href="#curriculum" class="nav-link text-gray-700 hover:text-indigo-600 font-medium">Curriculum</a>
+          <a href="#why" class="nav-link text-gray-700 hover:text-indigo-600 font-medium">Why Join</a>
+          <a href="#process" class="nav-link text-gray-700 hover:text-indigo-600 font-medium">Process</a>
+          <a href="#testimonials" class="nav-link text-gray-700 hover:text-indigo-600 font-medium">Testimonials</a>
+          <a href="#contact" class="nav-link text-gray-700 hover:text-indigo-600 font-medium">Contact</a>
+        </div>
+        
+        <div class="md:hidden">
+          <button id="menu-toggle" class="text-gray-800 focus:outline-none">
+            <i class="fas fa-bars text-2xl"></i>
+          </button>
+        </div>
+      </div>
+    </div>
+    
+    <!-- Mobile Menu -->
+    <div id="mobile-menu" class="md:hidden hidden bg-white shadow-lg">
+      <div class="px-4 py-3 space-y-4">
+        <a href="#home" class="block py-2 px-4 rounded hover:bg-indigo-50 hover:text-indigo-600">Home</a>
+        <a href="#about" class="block py-2 px-4 rounded hover:bg-indigo-50 hover:text-indigo-600">About</a>
+        <a href="#curriculum" class="block py-2 px-4 rounded hover:bg-indigo-50 hover:text-indigo-600">Curriculum</a>
+        <a href="#why" class="block py-2 px-4 rounded hover:bg-indigo-50 hover:text-indigo-600">Why Join</a>
+        <a href="#process" class="block py-2 px-4 rounded hover:bg-indigo-50 hover:text-indigo-600">Process</a>
+        <a href="#testimonials" class="block py-2 px-4 rounded hover:bg-indigo-50 hover:text-indigo-600">Testimonials</a>
+        <a href="#contact" class="block py-2 px-4 rounded hover:bg-indigo-50 hover:text-indigo-600">Contact</a>
+      </div>
+    </div>
+  </header>
+
+  <!-- Hero Section -->
+  <section id="home" class="min-h-screen hero-bg flex items-center pt-20">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20 text-center">
+      <div class="animate-fade-in">
+        <h1 class="text-4xl sm:text-5xl md:text-6xl font-bold text-white mb-6">
+          <span class="text-indigo-400">Transform</span> Your Career With Tech
+        </h1>
+        <p class="text-xl sm:text-2xl text-gray-300 mb-10 max-w-3xl mx-auto">
+          Master in-demand tech skills with our hands-on program and launch your career in just 6 months
+        </p>
+        <div class="flex flex-col sm:flex-row gap-4 justify-center">
+          <a href="https://wa.me/2349068649046?text=I%27m%20ready%20to%20join%20Tech-Up%20%F0%9F%9A%80%F0%9F%92%BB%20Please%20share%20next%20steps." 
+             target="_blank" 
+             class="bg-emerald-500 hover:bg-emerald-600 px-8 py-4 rounded-lg text-white font-semibold text-lg shadow-lg transition-all duration-300 transform hover:scale-105 flex items-center justify-center">
+            <i class="fab fa-whatsapp mr-3 text-xl"></i> WhatsApp Registration
+          </a>
+          <a href="#contact" 
+             class="bg-indigo-600 hover:bg-indigo-700 px-8 py-4 rounded-lg text-white font-semibold text-lg shadow-lg transition-all duration-300 transform hover:scale-105 flex items-center justify-center">
+            <i class="fas fa-envelope mr-3 text-xl"></i> Email Registration
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- About Section -->
+  <section id="about" class="py-20 bg-white">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="text-center mb-16">
+        <h2 class="text-3xl sm:text-4xl font-bold text-gray-900 mb-4">
+          <span class="text-indigo-600">About</span> Tech-Up
+        </h2>
+        <p class="text-xl text-gray-600 max-w-3xl mx-auto">
+          We're a career accelerator program designed to take you from beginner to job-ready in the tech industry
+        </p>
+      </div>
+      
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+        <div class="bg-gray-50 p-8 rounded-xl shadow-md card-hover animate-fade-in delay-1">
+          <div class="w-16 h-16 bg-indigo-100 rounded-full flex items-center justify-center mb-6 mx-auto">
+            <i class="fas fa-users text-2xl text-indigo-600"></i>
+          </div>
+          <h3 class="text-xl font-bold text-gray-900 mb-3 text-center">Community Focused</h3>
+          <p class="text-gray-600 text-center">
+            Join a supportive network of peers, mentors, and alumni to accelerate your learning
+          </p>
+        </div>
+        
+        <div class="bg-gray-50 p-8 rounded-xl shadow-md card-hover animate-fade-in delay-2">
+          <div class="w-16 h-16 bg-indigo-100 rounded-full flex items-center justify-center mb-6 mx-auto">
+            <i class="fas fa-laptop-code text-2xl text-indigo-600"></i>
+          </div>
+          <h3 class="text-xl font-bold text-gray-900 mb-3 text-center">Project-Based</h3>
+          <p class="text-gray-600 text-center">
+            Learn by building real-world projects that showcase your skills to employers
+          </p>
+        </div>
+        
+        <div class="bg-gray-50 p-8 rounded-xl shadow-md card-hover animate-fade-in delay-3">
+          <div class="w-16 h-16 bg-indigo-100 rounded-full flex items-center justify-center mb-6 mx-auto">
+            <i class="fas fa-chalkboard-teacher text-2xl text-indigo-600"></i>
+          </div>
+          <h3 class="text-xl font-bold text-gray-900 mb-3 text-center">Expert Mentors</h3>
+          <p class="text-gray-600 text-center">
+            Learn from industry professionals with years of experience in top tech companies
+          </p>
+        </div>
+        
+        <div class="bg-gray-50 p-8 rounded-xl shadow-md card-hover animate-fade-in delay-4">
+          <div class="w-16 h-16 bg-indigo-100 rounded-full flex items-center justify-center mb-6 mx-auto">
+            <i class="fas fa-briefcase text-2xl text-indigo-600"></i>
+          </div>
+          <h3 class="text-xl font-bold text-gray-900 mb-3 text-center">Career Support</h3>
+          <p class="text-gray-600 text-center">
+            Get personalized career coaching, resume reviews, and interview preparation
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Curriculum Section -->
+  <section id="curriculum" class="py-20 bg-indigo-50">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="text-center mb-16">
+        <h2 class="text-3xl sm:text-4xl font-bold text-gray-900 mb-4">
+          Our <span class="text-indigo-600">Curriculum</span>
+        </h2>
+        <p class="text-xl text-gray-600 max-w-3xl mx-auto">
+          A comprehensive program covering the most in-demand tech skills
+        </p>
+      </div>
+      
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+        <div class="bg-white p-8 rounded-xl shadow-md card-hover">
+          <div class="flex items-center mb-4">
+            <div class="w-12 h-12 bg-indigo-100 rounded-full flex items-center justify-center mr-4">
+              <i class="fas fa-code text-indigo-600"></i>
+            </div>
+            <h3 class="text-xl font-bold text-gray-900">Frontend Development</h3>
+          </div>
+          <ul class="space-y-2 text-gray-600">
+            <li class="flex items-center"><i class="fas fa-check-circle text-emerald-500 mr-2"></i> HTML5 & CSS3</li>
+            <li class="flex items-center"><i class="fas fa-check-circle text-emerald-500 mr-2"></i> JavaScript (ES6+)</li>
+            <li class="flex items-center"><i class="fas fa-check-circle text-emerald-500 mr-2"></i> React.js</li>
+            <li class="flex items-center"><i class="fas fa-check-circle text-emerald-500 mr-2"></i> Responsive Design</li>
+            <li class="flex items-center"><i class="fas fa-check-circle text-emerald-500 mr-2"></i> UI/UX Principles</li>
+            <li class="flex items-center font-medium text-indigo-600"><i class="fas fa-plus-circle mr-2"></i> And more...</li>
+          </ul>
+        </div>
+        
+        <div class="bg-white p-8 rounded-xl shadow-md card-hover">
+          <div class="flex items-center mb-4">
+            <div class="w-12 h-12 bg-indigo-100 rounded-full flex items-center justify-center mr-4">
+              <i class="fas fa-server text-indigo-600"></i>
+            </div>
+            <h3 class="text-xl font-bold text-gray-900">Backend Development</h3>
+          </div>
+          <ul class="space-y-2 text-gray-600">
+            <li class="flex items-center"><i class="fas fa-check-circle text-emerald-500 mr-2"></i> Node.js</li>
+            <li class="flex items-center"><i class="fas fa-check-circle text-emerald-500 mr-2"></i> Express.js</li>
+            <li class="flex items-center"><i class="fas fa-check-circle text-emerald-500 mr-2"></i> RESTful APIs</li>
+            <li class="flex items-center"><i class="fas fa-check-circle text-emerald-500 mr-2"></i> Databases (SQL & NoSQL)</li>
+            <li class="flex items-center"><i class="fas fa-check-circle text-emerald-500 mr-2"></i> Authentication</li>
+            <li class="flex items-center font-medium text-indigo-600"><i class="fas fa-plus-circle mr-2"></i> And more...</li>
+          </ul>
+        </div>
+        
+        <div class="bg-white p-8 rounded-xl shadow-md card-hover">
+          <div class="flex items-center mb-4">
+            <div class="w-12 h-12 bg-indigo-100 rounded-full flex items-center justify-center mr-4">
+              <i class="fas fa-cloud text-indigo-600"></i>
+            </div>
+            <h3 class="text-xl font-bold text-gray-900">Cloud & DevOps</h3>
+          </div>
+          <ul class="space-y-2 text-gray-600">
+            <li class="flex items-center"><i class="fas fa-check-circle text-emerald-500 mr-2"></i> AWS Fundamentals</li>
+            <li class="flex items-center"><i class="fas fa-check-circle text-emerald-500 mr-2"></i> Docker & Containers</li>
+            <li class="flex items-center"><i class="fas fa-check-circle text-emerald-500 mr-2"></i> CI/CD Pipelines</li>
+            <li class="flex items-center"><i class="fas fa-check-circle text-emerald-500 mr-2"></i> Infrastructure as Code</li>
+            <li class="flex items-center"><i class="fas fa-check-circle text-emerald-500 mr-2"></i> Monitoring & Logging</li>
+          </ul>
+        </div>
+
+        <div class="bg-white p-8 rounded-xl shadow-md card-hover">
+          <div class="flex items-center mb-4">
+            <div class="w-12 h-12 bg-indigo-100 rounded-full flex items-center justify-center mr-4">
+              <i class="fas fa-shield-alt text-indigo-600"></i>
+            </div>
+            <h3 class="text-xl font-bold text-gray-900">Cyber Security</h3>
+          </div>
+          <ul class="space-y-2 text-gray-600">
+            <li class="flex items-center"><i class="fas fa-check-circle text-emerald-500 mr-2"></i> Lorem ipsum dolor sit amet</li>
+            <li class="flex items-center"><i class="fas fa-check-circle text-emerald-500 mr-2"></i> Consectetur adipiscing elit</li>
+            <li class="flex items-center"><i class="fas fa-check-circle text-emerald-500 mr-2"></i> Sed do eiusmod tempor</li>
+            <li class="flex items-center"><i class="fas fa-check-circle text-emerald-500 mr-2"></i> Incididunt ut labore et dolore</li>
+            <li class="flex items-center"><i class="fas fa-check-circle text-emerald-500 mr-2"></i> Magna aliqua ut enim ad</li>
+            <li class="flex items-center font-medium text-indigo-600"><i class="fas fa-plus-circle mr-2"></i> And more...</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Why Join Section -->
+  <section id="why" class="py-20 bg-white">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="text-center mb-16">
+        <h2 class="text-3xl sm:text-4xl font-bold text-gray-900 mb-4">
+          Why <span class="text-indigo-600">Choose</span> Tech-Up
+        </h2>
+        <p class="text-xl text-gray-600 max-w-3xl mx-auto">
+          Here's what makes our program different from traditional education
+        </p>
+      </div>
+      
+      <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+        <div>
+          <div class="space-y-8">
+            <div class="flex">
+              <div class="flex-shrink-0">
+                <div class="flex items-center justify-center h-12 w-12 rounded-md bg-indigo-500 text-white">
+                  <i class="fas fa-bolt"></i>
+                </div>
+              </div>
+              <div class="ml-4">
+                <h3 class="text-lg font-bold text-gray-900">Fast-Track Learning</h3>
+                <p class="mt-2 text-gray-600">
+                  Our intensive program gets you job-ready in months, not years. Focus only on what you need to know to land a tech job.
+                </p>
+              </div>
+            </div>
+            
+            <div class="flex">
+              <div class="flex-shrink-0">
+                <div class="flex items-center justify-center h-12 w-12 rounded-md bg-indigo-500 text-white">
+                  <i class="fas fa-hand-holding-usd"></i>
+                </div>
+              </div>
+              <div class="ml-4">
+                <h3 class="text-lg font-bold text-gray-900">Income Share Agreement</h3>
+                <p class="mt-2 text-gray-600">
+                  Pay nothing until you land a job. Once employed, pay a percentage of your income for a fixed period.
+                </p>
+              </div>
+            </div>
+            
+            <div class="flex">
+              <div class="flex-shrink-0">
+                <div class="flex items-center justify-center h-12 w-12 rounded-md bg-indigo-500 text-white">
+                  <i class="fas fa-network-wired"></i>
+                </div>
+              </div>
+              <div class="ml-4">
+                <h3 class="text-lg font-bold text-gray-900">Hiring Partnerships</h3>
+                <p class="mt-2 text-gray-600">
+                  We partner with tech companies who hire directly from our program, giving you a direct path to employment.
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+        
+        <div class="relative">
+          <div class="relative w-full rounded-xl overflow-hidden shadow-2xl">
+            <img src="https://images.unsplash.com/photo-1522071820081-009f0129c71c?q=80&w=2070&auto=format&fit=crop" 
+                 alt="Students learning together" 
+                 class="w-full h-auto">
+            <div class="absolute inset-0 bg-indigo-600 opacity-20"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Process Section -->
+  <section id="process" class="py-20 bg-indigo-50">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="text-center mb-16">
+        <h2 class="text-3xl sm:text-4xl font-bold text-gray-900 mb-4">
+          Our <span class="text-indigo-600">Process</span>
+        </h2>
+        <p class="text-xl text-gray-600 max-w-3xl mx-auto">
+          Simple steps from application to your dream tech job
+        </p>
+      </div>
+      
+      <div class="flex flex-col sm:flex-row justify-between items-center sm:items-start">
+        <div class="process-step flex flex-col items-center mb-10 sm:mb-0 px-4">
+          <div class="flex items-center justify-center w-20 h-20 rounded-full bg-white shadow-md border-4 border-indigo-100 mb-4">
+            <span class="text-indigo-600 text-2xl font-bold">1</span>
+          </div>
+          <h3 class="text-lg font-bold text-gray-900 mb-2 text-center">Apply</h3>
+          <p class="text-gray-600 text-center">Complete our simple application form</p>
+        </div>
+        
+        <div class="process-step flex flex-col items-center mb-10 sm:mb-0 px-4">
+          <div class="flex items-center justify-center w-20 h-20 rounded-full bg-white shadow-md border-4 border-indigo-100 mb-4">
+            <span class="text-indigo-600 text-2xl font-bold">2</span>
+          </div>
+          <h3 class="text-lg font-bold text-gray-900 mb-2 text-center">Interview</h3>
+          <p class="text-gray-600 text-center">Technical and motivational screening</p>
+        </div>
+        
+        <div class="process-step flex flex-col items-center mb-10 sm:mb-0 px-4">
+          <div class="flex items-center justify-center w-20 h-20 rounded-full bg-white shadow-md border-4 border-indigo-100 mb-4">
+            <span class="text-indigo-600 text-2xl font-bold">3</span>
+          </div>
+          <h3 class="text-lg font-bold text-gray-900 mb-2 text-center">Learn</h3>
+          <p class="text-gray-600 text-center">6 months of intensive training</p>
+        </div>
+        
+        <div class="process-step flex flex-col items-center mb-10 sm:mb-0 px-4">
+          <div class="flex items-center justify-center w-20 h-20 rounded-full bg-white shadow-md border-4 border-indigo-100 mb-4">
+            <span class="text-indigo-600 text-2xl font-bold">4</span>
+          </div>
+          <h3 class="text-lg font-bold text-gray-900 mb-2 text-center">Graduate</h3>
+          <p class="text-gray-600 text-center">Complete capstone projects</p>
+        </div>
+        
+        <div class="process-step flex flex-col items-center px-4">
+          <div class="flex items-center justify-center w-20 h-20 rounded-full bg-white shadow-md border-4 border-indigo-100 mb-4">
+            <span class="text-indigo-600 text-2xl font-bold">5</span>
+          </div>
+          <h3 class="text-lg font-bold text-gray-900 mb-2 text-center">Get Hired</h3>
+          <p class="text-gray-600 text-center">Land your dream tech job</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Testimonials Section -->
+  <section id="testimonials" class="py-20 bg-white">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="text-center mb-16">
+        <h2 class="text-3xl sm:text-4xl font-bold text-gray-900 mb-4">
+          Success <span class="text-indigo-600">Stories</span>
+        </h2>
+        <p class="text-xl text-gray-600 max-w-3xl mx-auto">
+          Hear from our graduates who transformed their careers
+        </p>
+      </div>
+      
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+        <div class="bg-gray-50 p-8 rounded-xl shadow-md card-hover">
+          <div class="flex items-center mb-6">
+            <img src="https://randomuser.me/api/portraits/women/43.jpg" alt="Jane Doe" class="w-12 h-12 rounded-full mr-4">
+            <div>
+              <h4 class="font-bold text-gray-900">Jane D.</h4>
+              <p class="text-indigo-600">Frontend Developer @TechCo</p>
+            </div>
+          </div>
+          <p class="text-gray-600 italic">
+            "Tech-Up completely changed my career trajectory. I went from working retail to landing my dream tech job in just 8 months. The hands-on projects were exactly what employers wanted to see."
+          </p>
+          <div class="mt-4 flex text-yellow-400">
+            <i class="fas fa-star"></i>
+            <i class="fas fa-star"></i>
+            <i class="fas fa-star"></i>
+            <i class="fas fa-star"></i>
+            <i class="fas fa-star"></i>
+          </div>
+        </div>
+        
+        <div class="bg-gray-50 p-8 rounded-xl shadow-md card-hover">
+          <div class="flex items-center mb-6">
+            <img src="https://randomuser.me/api/portraits/men/32.jpg" alt="Mark P." class="w-12 h-12 rounded-full mr-4">
+            <div>
+              <h4 class="font-bold text-gray-900">Mark P.</h4>
+              <p class="text-indigo-600">DevOps Engineer @CloudScale</p>
+            </div>
+          </div>
+          <p class="text-gray-600 italic">
+            "The mentorship at Tech-Up was incredible. My mentor helped me navigate complex cloud concepts and even referred me to my current employer. The career support is unmatched."
+          </p>
+          <div class="mt-4 flex text-yellow-400">
+            <i class="fas fa-star"></i>
+            <i class="fas fa-star"></i>
+            <i class="fas fa-star"></i>
+            <i class="fas fa-star"></i>
+            <i class="fas fa-star"></i>
+          </div>
+        </div>
+        
+        <div class="bg-gray-50 p-8 rounded-xl shadow-md card-hover">
+          <div class="flex items-center mb-6">
+            <img src="https://randomuser.me/api/portraits/women/65.jpg" alt="Sarah K." class="w-12 h-12 rounded-full mr-4">
+            <div>
+              <h4 class="font-bold text-gray-900">Sarah K.</h4>
+              <p class="text-indigo-600">Full Stack Developer @DigitalNest</p>
+            </div>
+          </div>
+          <p class="text-gray-600 italic">
+            "I was skeptical about bootcamps before joining Tech-Up, but the curriculum was so practical. I built a portfolio during the program that got me multiple job offers upon graduation."
+          </p>
+          <div class="mt-4 flex text-yellow-400">
+            <i class="fas fa-star"></i>
+            <i class="fas fa-star"></i>
+            <i class="fas fa-star"></i>
+            <i class="fas fa-star"></i>
+            <i class="fas fa-star"></i>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Stats Section -->
+  <section id="counter-section" class="py-16 bg-indigo-600 text-white">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="grid grid-cols-2 md:grid-cols-4 gap-8 text-center">
+        <div class="counter-item">
+          <div class="text-4xl font-bold mb-2" data-target="95">0</div>
+          <div class="text-sm uppercase tracking-wider">Job Placement</div>
+        </div>
+        <div class="counter-item">
+          <div class="text-4xl font-bold mb-2" data-target="6">0</div>
+          <div class="text-sm uppercase tracking-wider">Months Program</div>
+        </div>
+        <div class="counter-item">
+          <div class="text-4xl font-bold mb-2" data-target="300">0</div>
+          <div class="text-sm uppercase tracking-wider">Graduates</div>
+        </div>
+        <div class="counter-item">
+          <div class="text-4xl font-bold mb-2" data-target="50">0</div>
+          <div class="text-sm uppercase tracking-wider">Hiring Partners</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <style>
+    .counter-item {
+      opacity: 0;
+      transform: translateY(20px);
+      transition: all 0.6s ease-out;
+    }
+    
+    .counter-item.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  </style>
+
+  <!-- Contact Section -->
+  <section id="contact" class="py-20 bg-white">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="text-center mb-16">
+        <h2 class="text-3xl sm:text-4xl font-bold text-gray-900 mb-4">
+          Get <span class="text-indigo-600">Started</span>
+        </h2>
+        <p class="text-xl text-gray-600 max-w-3xl mx-auto">
+          Ready to transform your career? Contact us today
+        </p>
+      </div>
+      
+      <div class="grid grid-cols-1 lg:grid-cols-2 gap-12">
+        <div>
+          <div class="bg-gray-50 p-8 rounded-xl shadow-md">
+            <h3 class="text-2xl font-bold text-gray-900 mb-6">Contact Information</h3>
+            
+            <div class="space-y-6">
+              <div class="flex items-start">
+                <div class="flex-shrink-0">
+                  <div class="flex items-center justify-center h-10 w-10 rounded-md bg-indigo-100 text-indigo-600">
+                    <i class="fas fa-map-marker-alt"></i>
+                  </div>
+                </div>
+                <div class="ml-4">
+                  <h4 class="text-lg font-medium text-gray-900">Location</h4>
+                  <p class="mt-1 text-gray-600">123 Tech Street, Code City</p>
+                </div>
+              </div>
+              
+              <div class="flex items-start">
+                <div class="flex-shrink-0">
+                  <div class="flex items-center justify-center h-10 w-10 rounded-md bg-indigo-100 text-indigo-600">
+                    <i class="fas fa-phone-alt"></i>
+                  </div>
+                </div>
+                <div class="ml-4">
+                  <h4 class="text-lg font-medium text-gray-900">Phone</h4>
+                  <p class="mt-1 text-gray-600">
+                    <a href="tel:+1234567890" class="hover:text-indigo-600">+1 234 567 890</a>
+                  </p>
+                </div>
+              </div>
+              
+              <div class="flex items-start">
+                <div class="flex-shrink-0">
+                  <div class="flex items-center justify-center h-10 w-10 rounded-md bg-indigo-100 text-indigo-600">
+                    <i class="fas fa-envelope"></i>
+                  </div>
+                </div>
+                <div class="ml-4">
+                  <h4 class="text-lg font-medium text-gray-900">Email</h4>
+                  <p class="mt-1 text-gray-600">
+                    <a href="mailto:info@techup.com" class="hover:text-indigo-600">info@techup.com</a>
+                  </p>
+                </div>
+              </div>
+            </div>
+            
+            <div class="mt-8">
+              <h4 class="text-lg font-medium text-gray-900 mb-4">Follow Us</h4>
+              <div class="flex space-x-4">
+                <a href="#" class="w-10 h-10 rounded-full bg-indigo-100 flex items-center justify-center text-indigo-600 hover:bg-indigo-200">
+                  <i class="fab fa-facebook-f"></i>
+                </a>
+                <a href="#" class="w-10 h-10 rounded-full bg-indigo-100 flex items-center justify-center text-indigo-600 hover:bg-indigo-200">
+                  <i class="fab fa-twitter"></i>
+                </a>
+                <a href="#" class="w-10 h-10 rounded-full bg-indigo-100 flex items-center justify-center text-indigo-600 hover:bg-indigo-200">
+                  <i class="fab fa-linkedin-in"></i>
+                </a>
+                <a href="#" class="w-10 h-10 rounded-full bg-indigo-100 flex items-center justify-center text-indigo-600 hover:bg-indigo-200">
+                  <i class="fab fa-instagram"></i>
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+        
+        <div>
+          <div class="bg-gray-50 p-8 rounded-xl shadow-md">
+            <h3 class="text-2xl font-bold text-gray-900 mb-6">Send Us a Message</h3>
+            <form class="space-y-6">
+              <div>
+                <label for="name" class="block text-sm font-medium text-gray-700">Full Name</label>
+                <input type="text" id="name" name="name" class="mt-1 block w-full border border-gray-300 rounded-md shadow-sm py-2 px-3 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500">
+              </div>
+              
+              <div>
+                <label for="email" class="block text-sm font-medium text-gray-700">Email</label>
+                <input type="email" id="email" name="email" class="mt-1 block w-full border border-gray-300 rounded-md shadow-sm py-2 px-3 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500">
+              </div>
+              
+              <div>
+                <label for="phone" class="block text-sm font-medium text-gray-700">Phone</label>
+                <input type="tel" id="phone" name="phone" class="mt-1 block w-full border border-gray-300 rounded-md shadow-sm py-2 px-3 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500">
+              </div>
+              
+              <div>
+                <label for="message" class="block text-sm font-medium text-gray-700">Message</label>
+                <textarea id="message" name="message" rows="4" class="mt-1 block w-full border border-gray-300 rounded-md shadow-sm py-2 px-3 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500"></textarea>
+              </div>
+              
+              <div>
+                <button type="submit" class="w-full flex justify-center py-3 px-4 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
+                  Send Message
+                </button>
+              </div>
+            </form>
+            
+            <div class="mt-8 text-center">
+              <p class="text-gray-600 mb-4">Or register directly via WhatsApp</p>
+              <a href="https://wa.me/2349068649046?text=I%27m%20ready%20to%20join%20Tech-Up%20%F0%9F%9A%80%F0%9F%92%BB%20Please%20share%20next%20steps." 
+                 target="_blank" 
+                 class="inline-flex items-center justify-center px-6 py-3 border border-transparent text-base font-medium rounded-md shadow-sm text-white bg-emerald-500 hover:bg-emerald-600">
+                <i class="fab fa-whatsapp mr-2"></i> WhatsApp Registration
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA Section -->
+  <section class="py-16 bg-indigo-600 text-white">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+      <h2 class="text-3xl sm:text-4xl font-bold mb-6">Ready to Launch Your Tech Career?</h2>
+      <p class="text-xl mb-8 max-w-3xl mx-auto">Applications are open for our next cohort. Limited seats available.</p>
+      <div class="flex flex-col sm:flex-row gap-4 justify-center">
+        <a href="https://wa.me/2349068649046?text=I%27m%20ready%20to%20join%20Tech-Up%20%F0%9F%9A%80%F0%9F%92%BB%20Please%20share%20next%20steps." 
+           target="_blank" 
+           class="bg-white hover:bg-gray-100 px-8 py-4 rounded-lg text-indigo-600 font-semibold text-lg shadow-lg transition-all duration-300 transform hover:scale-105">
+          <i class="fab fa-whatsapp mr-2"></i> Apply Now
+        </a>
+        <a href="#contact" 
+           class="bg-indigo-800 hover:bg-indigo-900 px-8 py-4 rounded-lg text-white font-semibold text-lg shadow-lg transition-all duration-300 transform hover:scale-105">
+          <i class="fas fa-info-circle mr-2"></i> Learn More
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="bg-gray-900 text-gray-400 py-12">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
+        <div>
+          <h3 class="text-white text-lg font-semibold mb-4">Tech-Up</h3>
+          <p class="mb-4">Accelerating tech careers through immersive education and hands-on training.</p>
+          <div class="flex space-x-4">
+            <a href="#" class="text-gray-400 hover:text-white">
+              <i class="fab fa-facebook-f"></i>
+            </a>
+            <a href="#" class="text-gray-400 hover:text-white">
+              <i class="fab fa-twitter"></i>
+            </a>
+            <a href="#" class="text-gray-400 hover:text-white">
+              <i class="fab fa-linkedin-in"></i>
+            </a>
+            <a href="#" class="text-gray-400 hover:text-white">
+              <i class="fab fa-instagram"></i>
+            </a>
+          </div>
+        </div>
+        
+        <div>
+          <h3 class="text-white text-lg font-semibold mb-4">Program</h3>
+          <ul class="space-y-2">
+            <li><a href="#about" class="hover:text-white">About</a></li>
+            <li><a href="#curriculum" class="hover:text-white">Curriculum</a></li>
+            <li><a href="#why" class="hover:text-white">Why Join</a></li>
+            <li><a href="#process" class="hover:text-white">Process</a></li>
+            <li><a href="#testimonials" class="hover:text-white">Testimonials</a></li>
+          </ul>
+        </div>
+        
+        <div>
+          <h3 class="text-white text-lg font-semibold mb-4">Resources</h3>
+          <ul class="space-y-2">
+            <li><a href="#" class="hover:text-white">Blog</a></li>
+            <li><a href="#" class="hover:text-white">FAQ</a></li>
+            <li><a href="#" class="hover:text-white">Scholarships</a></li>
+            <li><a href="#" class="hover:text-white">Events</a></li>
+            <li><a href="#" class="hover:text-white">Careers</a></li>
+          </ul>
+        </div>
+        
+        <div>
+          <h3 class="text-white text-lg font-semibold mb-4">Legal</h3>
+          <ul class="space-y-2">
+            <li><a href="#" class="hover:text-white">Privacy Policy</a></li>
+            <li><a href="#" class="hover:text-white">Terms of Service</a></li>
+            <li><a href="#" class="hover:text-white">Cookie Policy</a></li>
+            <li><a href="#" class="hover:text-white">Income Share Agreement</a></li>
+          </ul>
+        </div>
+      </div>
+      
+      <div class="border-t border-gray-800 mt-12 pt-8 flex flex-col md:flex-row justify-between items-center">
+        <p>&copy; 2025 Tech-Up. All rights reserved.</p>
+        <div class="mt-4 md:mt-0">
+          <a href="#" class="text-sm text-gray-400 hover:text-white mr-4">Privacy Policy</a>
+          <a href="#" class="text-sm text-gray-400 hover:text-white">Terms of Service</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Floating WhatsApp Button -->
+  <a href="https://wa.me/2349068649046?text=I%27m%20ready%20to%20join%20Tech-Up%20%F0%9F%9A%80%F0%9F%92%BB%20Please%20share%20next%20steps." 
+     target="_blank" 
+     class="floating-btn bg-emerald-500 text-white p-5 rounded-full shadow-xl hover:bg-emerald-600">
+    <i class="fab fa-whatsapp text-2xl"></i>
+  </a>
+
+  <!-- Back to Top Button -->
+  <button id="back-to-top" class="hidden fixed bottom-24 right-5 bg-indigo-600 text-white p-3 rounded-full shadow-lg hover:bg-indigo-700 transition-all duration-300">
+    <i class="fas fa-arrow-up"></i>
+  </button>
+
+  <!-- JS -->
+  <script>
+    // Counter animation
+    function animateCounters() {
+      const counters = document.querySelectorAll('.counter-item.visible [data-target]');
+      const speed = 200; // Lower is faster
+      
+      counters.forEach(counter => {
+        if (!counter.classList.contains('counting')) {
+          counter.classList.add('counting');
+          const target = +counter.getAttribute('data-target');
+          const count = +counter.innerText;
+          const increment = target / speed;
+          
+          if (count < target) {
+            counter.innerText = Math.ceil(count + increment);
+            setTimeout(animateCounters, 1);
+          } else {
+            counter.innerText = target;
+            // Add + sign for graduates and partners
+            if (counter.parentElement.querySelector('div:last-child').textContent.includes('Graduates') || 
+                counter.parentElement.querySelector('div:last-child').textContent.includes('Partners')) {
+              counter.innerText += '+';
+            }
+            // Add % for job placement
+            if (counter.parentElement.querySelector('div:last-child').textContent.includes('Placement')) {
+              counter.innerText += '%';
+            }
+          }
+        }
+      });
+    }
+
+    // Intersection Observer for counters
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+          animateCounters();
+        }
+      });
+    }, { threshold: 0.5 });
+
+    document.querySelectorAll('.counter-item').forEach(item => {
+      observer.observe(item);
+    });
+
+    // Mobile menu toggle
+    const menuToggle = document.getElementById('menu-toggle');
+    const mobileMenu = document.getElementById('mobile-menu');
+    
+    menuToggle.addEventListener('click', () => {
+      mobileMenu.classList.toggle('hidden');
+    });
+    
+    // Close mobile menu when clicking on a link
+    const mobileLinks = document.querySelectorAll('#mobile-menu a');
+    mobileLinks.forEach(link => {
+      link.addEventListener('click', () => {
+        mobileMenu.classList.add('hidden');
+      });
+    });
+    
+    // Back to top button
+    const backToTopButton = document.getElementById('back-to-top');
+    
+    window.addEventListener('scroll', () => {
+      if (window.pageYOffset > 300) {
+        backToTopButton.classList.remove('hidden');
+      } else {
+        backToTopButton.classList.add('hidden');
+      }
+    });
+    
+    backToTopButton.addEventListener('click', () => {
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    });
+    
+    // Form submission
+    const contactForm = document.querySelector('form');
+    if (contactForm) {
+      contactForm.addEventListener('submit', (e) => {
+        e.preventDefault();
+        alert('Thank you for your message! We will get back to you soon.');
+        contactForm.reset();
+      });
+    }
+    
+    // Animate elements when scrolling
+    const animateOnScroll = () => {
+      const elements = document.querySelectorAll('.animate-fade-in');
+      
+      elements.forEach(element => {
+        const elementPosition = element.getBoundingClientRect().top;
+        const screenPosition = window.innerHeight / 1.3;
+        
+        if (elementPosition < screenPosition) {
+          element.style.opacity = '1';
+          element.style.transform = 'translateY(0)';
+        }
+      });
+    };
+    
+    window.addEventListener('scroll', animateOnScroll);
+    window.addEventListener('load', animateOnScroll);
+  </script>
+</body>
+</html>
